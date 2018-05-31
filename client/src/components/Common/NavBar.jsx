@@ -73,9 +73,10 @@ class NavBar extends React.Component {
                         OM Curriculum Roadmap
                     </Typography>
 
-                    {process.env.NODE_ENV === 'development' ?
+                    {/* {process.env.NODE_ENV === 'development' ?
                         <RadioThemeSelector themeName={themeName} update={updateTheme} /> :
-                        null}
+                        null} */}
+                    <RadioThemeSelector themeName={themeName} update={updateTheme} />
                     
                     <Tabs value={this.state.activeTab} onChange={this.handleChange}>
                         <Tab value="dashboard" label="Dashboard" component={LinkButton} to="/" />
