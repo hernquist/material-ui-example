@@ -1,0 +1,26 @@
+{
+  "name": "om-roadmap-server",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=8.8.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=production node ./bin/www",
+    "dev": "PORT=3001 DEBUG=om-roadmap-server:* NODE_ENV=development nodemon --inspect ./bin/www",
+    "debug": "PORT=3001 DEBUG=* NODE_ENV=development nodemon --inspect ./bin/www",
+    "lint": "yarn eslint ."
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "debug": "~2.6.9",
+    "dotenv": "^5.0.1",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  }
+}

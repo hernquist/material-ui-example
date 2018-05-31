@@ -1,0 +1,5 @@
+---
+applications:
+- name: om-roadmap-server
+  command: npm start
+  buildpack: nodejs_buildpack

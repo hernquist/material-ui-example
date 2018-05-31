@@ -1,0 +1,4 @@
+---
+applications:
+- name: om-roadmap
+  buildpack: staticfile_buildpack

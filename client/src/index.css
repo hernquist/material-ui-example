@@ -1,0 +1,36 @@
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: roboto, sans-serif;
+}
+
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* #toast-container > div {
+  opacity: 1 !important;
+} */
