@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Typography } from '@material-ui/core';
+import { List, Typography, Fade } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import toastr from '../../toastr';
@@ -60,43 +60,45 @@ class About extends React.Component {
     render() {
         const { themeName, theme, updateTheme, classes } = this.props;
         return (
-            <section className={classes.root}>
-                <Typography variant="display2" className={classes.content}>
-                    OM Curriculum Roadmap
-                </Typography>
-                <Typography variant="caption" className={classes.content}>
-                    Client Version: {clientVersion}
-                </Typography>
-                <Typography variant="caption" className={classes.content}>
-                    Server Version: {this.state.serverVersion}
-                </Typography>
+            <Fade in={true} timeout={{ enter: 1000, exit: 1000 }}>
+                <section className={classes.root}>
+                    <Typography variant="display2" className={classes.content}>
+                        OM Curriculum Roadmap
+                    </Typography>
+                    <Typography variant="caption" className={classes.content}>
+                        Client Version: {clientVersion}
+                    </Typography>
+                    <Typography variant="caption" className={classes.content}>
+                        Server Version: {this.state.serverVersion}
+                    </Typography>
 
-                <Typography variant="headline" className={classes.builtWith}>
-                    Built with:
-                </Typography>
-                
-                <List dense={false}>
-                    <BuiltWithTech
-                        name="React"
-                        version="16.4"
-                        logoSrc={reactLogoSvg}
-                        logoClassName={classes.reactLogo}
-                        url="https://reactjs.org/"
-                    />
-                    <BuiltWithTech
-                        name="Material
-                        UI"
-                        version="1.1"
-                        logoSrc={materialUiLogoSvg}
-                        logoClassName={classes.materialUiLogo}
-                        url="https://material-ui.com"
-                    />
-                </List>
+                    <Typography variant="headline" className={classes.builtWith}>
+                        Built with:
+                    </Typography>
+                    
+                    <List dense={false}>
+                        <BuiltWithTech
+                            name="React"
+                            version="16.4"
+                            logoSrc={reactLogoSvg}
+                            logoClassName={classes.reactLogo}
+                            url="https://reactjs.org/"
+                        />
+                        <BuiltWithTech
+                            name="Material
+                            UI"
+                            version="1.1"
+                            logoSrc={materialUiLogoSvg}
+                            logoClassName={classes.materialUiLogo}
+                            url="https://material-ui.com"
+                        />
+                    </List>
 
-                {process.env.NODE_ENV === 'development' ?
-                    <ThemeColorBrowser themeName={themeName} theme={theme} updateTheme={updateTheme} /> :
-                    null}
-            </section>
+                    {process.env.NODE_ENV === 'development' ?
+                        <ThemeColorBrowser themeName={themeName} theme={theme} updateTheme={updateTheme} /> :
+                        null}
+                </section>
+            </Fade>
         );
     }
 }

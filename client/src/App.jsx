@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import DashboardView from './components/DashboardView/DashboardView';
@@ -135,6 +135,7 @@ class App extends React.Component {
                         <Route exact path="/" render={() => <DashboardView orgs={orgs} />} />
                         <Route exact path="/stats" render={() => <StatsView orgs={orgs} />} />
                         <Route exact path="/cards" render={() => <CardView orgs={orgs} />} />
+                        {/* TODO: move this route to the CardView component */}
                         <Route path="/cards/orgs/:id" render={props => {
                             const id = Number(props.match.params.id);
                             const org = this.state.orgs.find(o => o.id === id);
@@ -142,7 +143,14 @@ class App extends React.Component {
                         }}/>
                         
                         <Route path="/list" render={() => <ListView orgs={orgs} />} />
-                        <Route exact path="/about" render={props => <About themeName={this.state.themeName} theme={themes[this.state.themeName]} updateTheme={this.updateTheme} />} />
+                        <Route exact path="/about" render={
+                            props =>
+                                <About
+                                    themeName={this.state.themeName}
+                                    theme={themes[this.state.themeName]}
+                                    updateTheme={this.updateTheme}
+                                />
+                        }/>
                     </Switch>
                 </main>
             );
