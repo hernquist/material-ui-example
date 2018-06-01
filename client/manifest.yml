@@ -1,4 +1,4 @@
 ---
 applications:
-- name: om-roadmap
+- name: om-curriculum-dashboard
   buildpack: staticfile_buildpack

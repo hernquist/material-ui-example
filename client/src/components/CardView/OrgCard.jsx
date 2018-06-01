@@ -55,7 +55,7 @@ const OrgCard = ({ org, classes }) => {
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button variant="fab" aria-label="add" className={classes.button}>
+                <Button variant="fab" component="a" href={org.html_url} aria-label="add" className={classes.button}>
                     <Tooltip
                         title="GitHub"
                         placement="bottom"

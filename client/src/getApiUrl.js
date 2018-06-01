@@ -12,7 +12,7 @@ function getApiUrl() {
             /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
         )
     );
-    return isLocalHost ? '/api' : 'https://om-roadmap-server.apps-np.homedepot.com/api';
+    return isLocalHost ? '/api' : 'https://om-curriculum-dashboard-server.apps-np.homedepot.com/api';
 }
 
 export default getApiUrl;

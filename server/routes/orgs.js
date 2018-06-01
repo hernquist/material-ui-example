@@ -1,19 +1,35 @@
 const express = require('express');
 const dotenv = require("dotenv");
+const cfenv = require('cfenv');
 const rp = require("request-promise");
 const omOrgs = require('../orgList');
 const githubApi = require('../githubApi');
 const router = express.Router();
 const offlineOrgData = require('../public/org-data.json');
 
+let auth = null;
+
+let online = true;
+
+// if (process.env.NODE_ENV === 'production') {
+//     online = true;   // always true in production
+//     const appEnv = cfenv.getAppEnv();
+
+// }
+// else {
+//     dotenv.config();
+//     auth = {
+//         user: process.env.USER,
+//         pass: process.env.PASSWORD
+//     };
+// }
 dotenv.config();
-
-const online = true;
-
-const auth = {
-    user: process.env.USER,
-    pass: process.env.PASSWORD
+auth = {
+    user: process.env.GIT_USER,
+    pass: process.env.GIT_PASSWORD
 };
+console.log('auth:', auth);
+
 
 // we cache the orgs here
 let cachedOrgs = [];
@@ -105,23 +121,19 @@ async function getProjectInfoRequest(org) {
 }
 
 async function getOrgs() {
-    try {
-        const orgInfoPromises = omOrgs.map(org => getOrgInfoRequest(org));
-        const orgRepoPromises = omOrgs.map(org => getOrgReposRequest(org));
-        const projectInfoPromises = omOrgs.map(org => getProjectInfoRequest(org));
-        const orgInfos = (await Promise.all(orgInfoPromises)).map(org => JSON.parse(org));
-        const allRepos = (await Promise.all(orgRepoPromises)).map(org => org);
-        const projectInfos = (await Promise.all(projectInfoPromises)).map(org => JSON.parse(org));
-        const orgs = orgInfos.map((orgInfo, index) => {
-            return { ...orgInfo,
-                repos: allRepos[index],
-                projects: projectInfos[index]
-            };
-        });
-        return orgs;
-    } catch(err) {
-        console.log('ERROR:', err);
-    }
+    const orgInfoPromises = omOrgs.map(org => getOrgInfoRequest(org));
+    const orgRepoPromises = omOrgs.map(org => getOrgReposRequest(org));
+    const projectInfoPromises = omOrgs.map(org => getProjectInfoRequest(org));
+    const orgInfos = (await Promise.all(orgInfoPromises)).map(org => JSON.parse(org));
+    const allRepos = (await Promise.all(orgRepoPromises)).map(org => org);
+    const projectInfos = (await Promise.all(projectInfoPromises)).map(org => JSON.parse(org));
+    const orgs = orgInfos.map((orgInfo, index) => {
+        return { ...orgInfo,
+            repos: allRepos[index],
+            projects: projectInfos[index]
+        };
+    });
+    return orgs;
 }
 
 /* GET orgs and their repos. */
@@ -149,6 +161,7 @@ router.get('/', async (req, res, next) => {
             return res.json(offlineOrgData);
         }
     } catch (err) {
+        console.log('ERROR:', err);
         next(err);
     }
 });

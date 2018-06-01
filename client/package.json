@@ -1,10 +1,10 @@
 {
-  "name": "om-curriculum-roadmap",
-  "homepage": "https://pages.github.homedepot.com/OrangeMethod/om-curriculum-roadmap/",
+  "name": "om-curriculum-dashboard",
+  "homepage": "https://om-curriculum-dashboard.apps-np.homedepot.com/",
   "version": "1.0.0",
   "private": true,
-  "proxy2": "https://om-roadmap-server.apps-np.homedepot.com",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://om-curriculum-dashboard-server.apps-np.homedepot.com/",
+  "proxy2": "http://localhost:3001",
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "@material-ui/icons": "^1.1.0",

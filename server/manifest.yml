@@ -1,5 +1,5 @@
 ---
 applications:
-- name: om-roadmap-server
+- name: om-curriculum-dashboard-server
   command: npm start
   buildpack: nodejs_buildpack
