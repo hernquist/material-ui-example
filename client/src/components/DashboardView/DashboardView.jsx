@@ -32,20 +32,20 @@ const compareObjectsByProperty = propName => (a, b) => a[propName] > b[propName]
 const RECENT_DAYS = 15;
 
 const DashboardView = ({ orgs, classes }) => {
-    const allRepos = orgs ? orgs.reduce((repos, org) => repos.concat(org.repos), []) : [];
+    const allRepos = orgs ? orgs.reduce((repos, org) => repos.concat(org.organization.repositories.nodes), []) : [];
     const now = new Date();
     const numDaysToInclude = RECENT_DAYS * 24 * 60 * 60 * 1000;
     const newRepos = allRepos.filter(repo => {
-        const createdAt = new Date(repo.created_at);
+        const createdAt = new Date(repo.createdAt);
         return now - createdAt < numDaysToInclude;
-    }).sort(compareObjectsByProperty('created_at'));
-    const newReposList = newRepos.map(repo => <RepoDashboardItem key={repo.id} org={findOrgById(orgs, repo.owner.id)} repo={repo} />);
+    }).sort(compareObjectsByProperty('createdAt'));
+    const newReposList = newRepos.map(repo => <RepoDashboardItem key={repo.id} repo={repo} />);
 
     const updatedRepos = allRepos.filter(repo => {
-        const updatedAt = new Date(repo.updated_at);
+        const updatedAt = new Date(repo.updatedAt);
         return now - updatedAt < numDaysToInclude;
-    }).sort(compareObjectsByProperty('updated_at'));;
-    const updatedReposList = updatedRepos.map(repo => <RepoDashboardItem key={repo.id} org={findOrgById(orgs, repo.owner.id)} repo={repo} />);
+    }).sort(compareObjectsByProperty('updatedAt'));;
+    const updatedReposList = updatedRepos.map(repo => <RepoDashboardItem key={repo.id} repo={repo} />);
 
     return (
         <Fade in={true} timeout={{ enter: 1000, exit: 1000 }}>

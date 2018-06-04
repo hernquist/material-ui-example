@@ -10,7 +10,7 @@ const styles = theme => {
         textStyle.flavors.forEach(flavor => {
             obj[flavor.className] = {
                 color: flavor.color,
-                backgrundCollor: flavor.backgroundColor
+                backgroundColor: flavor.backgroundColor
             };
         });
         return obj;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ViewportContext from '../Common/ViewportContext';
 import LinkButton from '../Common/LinkButton';
 import Summary from '../Common/Summary';
@@ -29,14 +29,16 @@ const styles = theme => {
 };
 
 const OrgDetails = ({ org, classes }) => {
-    const numRepos = org.repos.length;
-    const numOpenIssues = org.repos.reduce((s, r) => s + r.open_issues_count, 0);
-    const projectLinks = org.projects ? org.projects.map(project => (
-        <Link key={project.id} href={project.html_url} style={{ marginRight: '10px' }}>{project.name}</Link>
+    const numRepos = org.repositories.nodes.length;
+    console.log('org.repositories.nodes:', org.repositories.nodes);
+    const numOpenIssues = org.repositories.nodes.reduce((s, r) => s + r.issues.totalCount, 0);
+    console.log('numOpenIssues:', numOpenIssues);
+    const projectLinks = org.projects ? org.projects.nodes.map(project => (
+        <Link key={project.id} href={project.url} style={{ marginRight: '10px' }}>{project.name}</Link>
     )) : null;
 
     const summaryItems = {
-        'Number of projects': org.projects.length,
+        // 'Number of projects': org.projects.nodes.length,
         'Project Links': projectLinks,
         'Number of repos': numRepos,
         'Number of open issues': numOpenIssues,
@@ -46,15 +48,15 @@ const OrgDetails = ({ org, classes }) => {
         <ViewportContext.Consumer>
             {viewport => (
                 <section className={classes.root}>
-                    <LinkButton to={"/cards"} variant="fab" aria-label="details" className={classes.button}>
+                    {/* <LinkButton to={"/cards"} variant="fab" aria-label="details" className={classes.button}>
                         <ArrowBackIcon />
-                    </LinkButton>
+                    </LinkButton> */}
 
                     <Paper elevation={6}>
                         <Summary
-                            id={org.login}
-                            title={org.login}
-                            subtitle={<Link href={org.html_url}>{org.html_url}</Link>}
+                            id={org.name}
+                            title={org.name}
+                            subtitle={<Link href={org.url}>{org.url}</Link>}
                             className={classes.root}
                             summaryItems={summaryItems}
                             // cols={getNumColumns(viewport, 2)}
@@ -67,7 +69,7 @@ const OrgDetails = ({ org, classes }) => {
                     </Paper>
 
                     <Paper elevation={6}>
-                        <OrgRepos repos={org.repos} />
+                        <OrgRepos repos={org.repositories.nodes} />
                     </Paper>
                 </section>
             )}

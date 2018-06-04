@@ -1,12 +1,10 @@
 const dotenv = require("dotenv");
 const { GraphQLClient } = require('graphql-request');
 const query = require('./query');
-const orgList = require('./org-list');
+const orgList = require('../orgList');
 
 // get my GitHub auth token
-dotenv.config({
-    path: './.env-thd'
-});
+dotenv.config();
 
 // create client with auth token
 const client = new GraphQLClient(process.env.GIT_ENDPOINT, {
@@ -24,6 +22,10 @@ const getData = async () => {
         ));
         const orgs = await Promise.all(promises);
         console.log(`Fetched ${orgs.length} organizations.`);
+        return {
+            gitHubRequests: 1,
+            orgs
+        };
     } catch (err) {
         console.log('ERROR 0:', err);
         console.log('ERROR 1:', err.response.errors) // GraphQL response errors
@@ -31,4 +33,4 @@ const getData = async () => {
     }
 };
 
-getData();
+module.exports = getData;

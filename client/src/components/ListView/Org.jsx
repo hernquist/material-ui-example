@@ -14,18 +14,16 @@ const styles = theme => ({
 });
 
 const Org = ({ org, classes }) => {
-
-    const numRepos = org.repos.length;
-    const numOpenIssues = org.repos.reduce((s, r) => s + r.open_issues_count, 0);
-    const projectLinks = org.projects ? org.projects.map(project => (
-        <Link key={project.id} style={{ marginRight: '10px' }} href={project.html_url}>
+    const numRepos = org.repositories.nodes.length;
+    const numOpenIssues = org.repositories.nodes.reduce((s, r) => s + r.issues.totalCount, 0);
+    const projectLinks = org.projects ? org.projects.nodes.map(project => (
+        <Link key={project.id} style={{ marginRight: '10px' }} href={project.url}>
           {project.name}
         </Link>
      )) : null;
-    const { workshops, lessons, labs, demoApps, other } = partitionRepos(org.repos);
+    const { workshops, lessons, labs, demoApps, other } = partitionRepos(org.repositories.nodes);
 
     const summaryItems = {
-        'Number of projects': org.projects.length,
         'Project Links': projectLinks,
         'Number of repos': numRepos,
         'Number of open issues': numOpenIssues,
@@ -41,9 +39,9 @@ const Org = ({ org, classes }) => {
             {viewport => (
                 <div key={org.id} className={classes.root}>
                     <Summary
-                        id={org.login}
-                        title={org.login}
-                        subtitle={<Link href={org.html_url}>{org.html_url}</Link>}
+                        id={org.name}
+                        title={org.name}
+                        subtitle={<Link href={org.url}>{org.url}</Link>}
                         summaryItems={summaryItems}
                         cols={getNumColumns(viewport, 2)}
                         dtWidth={"60%"}

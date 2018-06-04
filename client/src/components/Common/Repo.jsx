@@ -3,11 +3,12 @@ import Summary from './Summary';
 import Link from './Link';
 
 const Repo = ({ repo }) => {
+    const topics = repo.repositoryTopics.nodes.map(node => node.topic.name);
     const summaryItems = {
-        Link: repo.html_url ? <Link href={repo.html_url}>{repo.html_url}</Link> : 'None',
-        Topics: repo.topics.join(', '),
-        'GitHub Pages Link': repo.pages_url ? <Link href={repo.pages_url}>{repo.pages_url}</Link> : 'None',
-        'Number of open issues': repo.open_issues_count
+        Link: repo.url ? <Link href={repo.url}>{repo.url}</Link> : 'None',
+        Topics: topics.join(', '),
+        'Homepage': repo.homepageUrl ? <Link href={repo.homepageUrl}>{repo.homepageUrl}</Link> : 'None',
+        'Number of open issues': repo.issues.totalCount
     };
 
     return (

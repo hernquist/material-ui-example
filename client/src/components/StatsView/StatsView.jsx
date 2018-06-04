@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Fade, Typography } from '@material-ui/core';
 import CurriculumSummary from './CurriculumSummary';
-import TopicsSummary from './TopicsSummary';
+import TagsAndTopicsSummary from './TagsAndTopicsSummary';
 
 const styles = theme => ({
     root: {
@@ -29,7 +29,7 @@ const Stats = ({ orgs, classes }) => (
             </Typography>
             <div className={classes.content}>
                 <CurriculumSummary orgs={orgs} />
-                <TopicsSummary orgs={orgs} />
+                <TagsAndTopicsSummary orgs={orgs} />
             </div>
         </section>
     </Fade>

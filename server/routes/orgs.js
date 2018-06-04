@@ -1,5 +1,5 @@
 const express = require('express');
-const getOrgData = require('../github/githubApi');
+const getOrgData = require('../github/githubGraphQL');
 const router = express.Router();
 
 /* GET orgs and their repos. */

@@ -44,7 +44,7 @@ const _CategoryLink = ({ org, title, count, classes }) => {
         count > 0 ? (
             <div className={classes.badgeStyle}>
                 <BadgeSmall badgeContent={count} color="secondary" classes={{ root: classes.badgeRoot, badge: classes.badge }}>
-                    <Link style={level3} href={'#' + org.login + '-' + title} className={classes.link}>
+                    <Link style={level3} href={'#' + org.organization.name + '-' + title} className={classes.link}>
                         {title}
                     </Link>
                 </BadgeSmall>
@@ -57,11 +57,11 @@ const CategoryLink = withStyles(styles)(_CategoryLink);
 
 const TOC = ({ orgs, classes }) => {
     const orgList = orgs.map(org => {
-        const { workshops, lessons, labs, demoApps, other } = partitionRepos(org.repos);
+        const { workshops, lessons, labs, demoApps, other } = partitionRepos(org.organization.repositories.nodes);
         return (
-            <div key={org.id}>
-                <Link style={level2} href={'#' + org.login}>
-                    {org.login}
+            <div key={org.organization.id}>
+                <Link style={level2} href={'#' + org.organization.name}>
+                    {org.organization.name}
                 </Link>
                 <CategoryLink org={org} title="Workshops" count={workshops.length} />
                 <CategoryLink org={org} title="Lessons" count={lessons.length} />

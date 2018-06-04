@@ -24,8 +24,8 @@ const CardView = ({ orgs, classes }) => (
                 <div>
                     <Grid container className={classes.root} justify="center" spacing={24}>
                     {orgs.map(org => (
-                        <Grid key={org.id} item>
-                            <OrgCard org={org} />
+                        <Grid key={org.organization.id} item>
+                            <OrgCard org={org.organization} />
                         </Grid>
                     ))}
                     </Grid>

@@ -5,24 +5,26 @@ import Summary from '../Common/Summary';
 
 function arrayToObject(arr) {
     return arr.reduce((obj, item) => {
-        return { ...obj, [item.title]: item.count };
+        console.log('reducing:', item);
+        return { ...obj, [item.name]: item.count };
     }, {});
 }
 
 function frequencyCount(data) {
+    console.log('data:', data);
     const counts = {};
     for (let i = 0; i < data.length; i++) {
-        const num = data[i];
-        counts[num] = counts[num] ? counts[num] + 1 : 1;
+        const key = data[i];
+        counts[key] = counts[key] ? counts[key] + 1 : 1;
     }
     return Object.keys(counts).map((key, index) => {
-        return { title: key, count: counts[key] };
-    }).sort((a, b) => a.count > b.count ? -1 : 1);
+        return { name: key, count: counts[key] };
+    }).sort((a, b) => a.count > b.count ? -1 : a.count === b.count ? a.name < b.name ? -1 : 1 : 1);
 }
 
 function partitionIntoTagsAndTopics(tagsAndTopics) {
     return tagsAndTopics.reduce((obj, item) => {
-        if (item.title === 'orangemethod' || item.title.startsWith('om-')) {
+        if (item.name === 'orangemethod' || item.name.startsWith('om-')) {
             obj.tags.push(item);
         }
         else {
@@ -33,10 +35,12 @@ function partitionIntoTagsAndTopics(tagsAndTopics) {
 }
 
 const TopicsSummary = ({ orgs }) => {
-    const allRepos = orgs.reduce((repos, org) => repos.concat(org.repos), []);
-    const allTagsAndTopics = allRepos.reduce((topics, repo) => topics.concat(repo.topics), []);
+    const allRepos = orgs ? orgs.reduce((repos, org) => repos.concat(org.organization.repositories.nodes), []) : [];
+    const _allTagsAndTopics = allRepos.reduce((topics, repo) => topics.concat(repo.repositoryTopics.nodes), []);
+    const allTagsAndTopics = _allTagsAndTopics.map(topic => topic.topic.name);
     const tagsAndTopicsWithCounts = frequencyCount(allTagsAndTopics);
     const { tags, topics } = partitionIntoTagsAndTopics(tagsAndTopicsWithCounts);
+    console.log(allRepos.length, allTagsAndTopics.length, tagsAndTopicsWithCounts);
     return (
         <ViewportContext.Consumer>
             {viewport => (

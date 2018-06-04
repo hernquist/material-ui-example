@@ -5,9 +5,9 @@ import Summary from '../Common/Summary';
 import partitionRepos from '../../partitionRepos';
 
 const CurriculumSummary = ({ orgs }) => {
-    const allRepos = orgs.reduce((repos, org) => repos.concat(org.repos), []);
+    const allRepos = orgs ? orgs.reduce((repos, org) => repos.concat(org.organization.repositories.nodes), []) : [];
     const { workshops, lessons, labs, demoApps, other } = partitionRepos(allRepos);
-    const numOpenIssues = orgs.reduce((sum, org) => sum + org.repos.reduce((s, r) => s + r.open_issues_count, 0), 0);
+    const numOpenIssues = orgs.reduce((sum, org) => sum + org.organization.repositories.nodes.reduce((s, r) => s + r.issues.totalCount, 0), 0);
     const summaryItems = {
         'Total number of orgs': orgs.length,
         'Total number of repos': allRepos.length,

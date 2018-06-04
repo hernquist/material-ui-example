@@ -42,20 +42,20 @@ const OrgCard = ({ org, classes }) => {
                 className={classes.media}
                 // image="/contemplative-reptile.jpg"
                 // image="https://picsum.photos/120?random"
-                image={org.avatar_url}
-                title={org.login}
+                image={org.avatarUrl}
+                title={org.name}
             >
             </CardMedia>
             <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
-                    {org.login}
+                    {org.name}
                 </Typography>
                 <Typography component="p" className={classes.description}>
                     {org.description}
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button variant="fab" component="a" href={org.html_url} aria-label="add" className={classes.button}>
+                <Button variant="fab" component="a" href={org.url} aria-label="add" className={classes.button}>
                     <Tooltip
                         title="GitHub"
                         placement="bottom"

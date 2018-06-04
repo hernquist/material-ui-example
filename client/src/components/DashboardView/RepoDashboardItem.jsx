@@ -27,6 +27,9 @@ function getTimeAgo(date) {
 }
 
 const styles = theme => ({
+    root: {
+        width: '98%',
+    },
     primary: {
         color: theme.palette.secondary.main,
     },
@@ -61,11 +64,11 @@ const styles = theme => ({
     },
 });
 
-const RepoDashboardItem = ({ org, repo, classes }) => {
-    const createdAtDate = new Date(repo.created_at);
+const RepoDashboardItem = ({ repo, classes }) => {
+    const createdAtDate = new Date(repo.createdAt);
     const createdAtTimeAgo = getTimeAgo(createdAtDate);
     
-    const updatedAtDate = new Date(repo.updated_at);
+    const updatedAtDate = new Date(repo.updatedAt);
     const updatedAtTimeAgo = getTimeAgo(updatedAtDate);
     
     const secondaryText = (
@@ -94,11 +97,11 @@ const RepoDashboardItem = ({ org, repo, classes }) => {
         <React.Fragment>
             <span>{repo.name}</span>
             <span className={classes.in}> in </span>
-            <span className={classes.orgName}>{org.login}</span>
+            <span className={classes.orgName}>{repo.owner.login}</span>
         </React.Fragment>;
 
     return (
-        <ListItem>
+        <ListItem className={classes.root}>
             <ListItemAvatar>
                 <Avatar>
                     <FolderIcon />
@@ -110,7 +113,7 @@ const RepoDashboardItem = ({ org, repo, classes }) => {
                 classes={{ primary: classes.primary, secondary: classes.secondary }}
             />
             <ListItemSecondaryAction>
-                <LinkButton aria-label="Details" to={`/cards/orgs/${org.id}#${getRepoCategory(repo)}`} className={classes.inline}>
+                <LinkButton aria-label="Details" to={`/cards/orgs/${repo.owner.id}#${getRepoCategory(repo)}`} className={classes.inline}>
                     <Tooltip
                         title="Details"
                         placement="bottom"
@@ -119,7 +122,7 @@ const RepoDashboardItem = ({ org, repo, classes }) => {
                         <ExitToAppIcon />
                     </Tooltip>
                 </LinkButton>
-                <Link aria-label="Navigate to GitHub Repository" href={repo.html_url} className={classes.inline}>
+                <Link aria-label="Navigate to GitHub Repository" href={repo.url} className={classes.inline}>
                     <Tooltip
                         title="GitHub"
                         placement="bottom"

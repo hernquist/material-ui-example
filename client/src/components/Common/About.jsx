@@ -9,6 +9,8 @@ import ThemeColorBrowser from './ThemeColorBrowser';
 import BuiltWithTech from './BuiltWithTech';
 import reactLogoSvg from '../../react-logo.svg';
 import materialUiLogoSvg from '../../material-ui-logo.svg';
+import graphqlLogoSvg from '../../graphql-logo.svg';
+
 
 const apiUrl = getApiUrl();
 
@@ -35,6 +37,11 @@ const styles = theme => {
             height: 100,
         },
         materialUiLogo: {
+            width: 60,
+            height: 60,
+            marginRight: 20,
+        },
+        graphqlLogo: {
             width: 60,
             height: 60,
             marginRight: 20,
@@ -85,12 +92,18 @@ class About extends React.Component {
                             url="https://reactjs.org/"
                         />
                         <BuiltWithTech
-                            name="Material
-                            UI"
+                            name="Material UI"
                             version="1.1"
                             logoSrc={materialUiLogoSvg}
                             logoClassName={classes.materialUiLogo}
                             url="https://material-ui.com"
+                        />
+                        <BuiltWithTech
+                            name="graphql-request (client for GraphQL)"
+                            version="1.6"
+                            logoSrc={graphqlLogoSvg}
+                            logoClassName={classes.graphqlLogo}
+                            url="https://github.com/prismagraphql/graphql-request"
                         />
                     </List>
 

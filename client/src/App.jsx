@@ -3,6 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import { CssBaseline } from '@material-ui/core';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+import deepPurple from '@material-ui/core/colors/deepPurple';
+import orange from '@material-ui/core/colors/orange';
 
 import DashboardView from './components/DashboardView/DashboardView';
 import StatsView from './components/StatsView/StatsView';
@@ -29,6 +32,18 @@ const themes = {
     dark: createMuiTheme({
         palette: {
             type: 'dark',
+            primary: {
+                light: '#000088',
+                main: '#3F51B5',
+                dark: blue[100],
+                contrastText: '#fff',
+            },
+            secondary: {
+                light: deepPurple[500],
+                main: orange[100],
+                dark: deepPurple[50],
+                contrastText: '#000',
+            }
         },
     }),
     custom: createMuiTheme({
@@ -102,10 +117,9 @@ class App extends React.Component {
                     orgs
                 });
                 if (orgs) {
-                    const numRepos = orgs.reduce((sum, org) => sum + org.repos.length, 0);
-                    const cachedMessage = orgData.gitHubRequests > 0 ? '.' : ' (fetched cached data).';
+                    const numRepos = orgs.reduce((sum, org) => sum + org.organization.repositories.nodes.length, 0);
                     const message = `Fetched ${numRepos} repos from ${orgs.length} orgs ` +
-                        `using ${orgData.gitHubRequests} GitHub API requests ${cachedMessage}`;
+                        `using ${orgData.gitHubRequests} GraphQL request.`;
                     if (orgData.gitHubRequests > 0) {
                         toastr.success(message);
                     }
@@ -137,9 +151,9 @@ class App extends React.Component {
                         <Route exact path="/cards" render={() => <CardView orgs={orgs} />} />
                         {/* TODO: move this route to the CardView component */}
                         <Route path="/cards/orgs/:id" render={props => {
-                            const id = Number(props.match.params.id);
-                            const org = this.state.orgs.find(o => o.id === id);
-                            return <OrgDetails org={org} { ...props } />;
+                            const id = props.match.params.id;
+                            const org = this.state.orgs.find(o => o.organization.id === id);
+                            return <OrgDetails org={org.organization} { ...props } />;
                         }}/>
                         
                         <Route path="/list" render={() => <ListView orgs={orgs} />} />

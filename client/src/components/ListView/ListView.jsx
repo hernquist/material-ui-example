@@ -6,7 +6,7 @@ import Org from './Org';
 import styles from './listViewStyles';
 
 const ListView = ({ orgs, classes }) => {
-    const orgList = orgs.map(org => <Org key={org.id} org={org} />);
+    const orgList = orgs.map(org => <Org key={org.organization.id} org={org.organization} />);
     return (
         <Fade in={true} timeout={{ enter: 1000, exit: 1000 }}>
             <section className={classes.root}>

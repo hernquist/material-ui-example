@@ -15,7 +15,7 @@ const RepoCategory = ({ org, title, repos, classes }) => {
     return (
         repos.length > 0 ? (
             <div>
-                <Typography id={org.login + '-' + title} variant="headline" className={classes.root}>
+                <Typography id={org.name + '-' + title} variant="headline" className={classes.root}>
                     {title}
                 </Typography>
                 {repoList}
