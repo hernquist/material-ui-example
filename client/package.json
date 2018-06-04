@@ -3,8 +3,8 @@
   "homepage": "https://om-curriculum-dashboard.apps-np.homedepot.com/",
   "version": "1.0.3",
   "private": true,
-  "proxy": "https://om-curriculum-dashboard-server.apps-np.homedepot.com/",
-  "proxy2": "http://localhost:3001",
+  "proxy2": "https://om-curriculum-dashboard-server.apps-np.homedepot.com/",
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@material-ui/core": "^1.1.0",
     "@material-ui/icons": "^1.1.0",
