@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 const rp = require("request-promise");
-const omOrgs = require('./orgList');
-const offlineOrgData = require('./public/org-data.json');
+const omOrgs = require('../orgList');
+const offlineOrgData = require('../public/org-data.json');
 
 let online = true;
 if (process.env.NODE_ENV === 'production') {
