@@ -28,8 +28,8 @@ auth = {
     user: process.env.GIT_USER,
     pass: process.env.GIT_PASSWORD
 };
-console.log('auth:', auth);
 
+// console.log('auth:', auth);
 
 // we cache the orgs here
 let cachedOrgs = [];

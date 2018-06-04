@@ -1,13 +1,13 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Badge from '@material-ui/core/Badge';
+import { withStyles, Paper } from '@material-ui/core';
+import BadgeSmall from '../Common/BadgeSmall';
 import partitionRepos from '../../partitionRepos';
 import Link from '../Common/Link';
 
 const level2 = {
-    marginTop: 30,
+    marginTop: 10,
     marginLeft: 10,
+    textDecoration: 'none',
 };
 
 const level3 = {
@@ -24,8 +24,18 @@ const styles = theme => ({
         color: theme.palette.text.primary,
     },
     badgeStyle: {
-        marginTop: 20,
-        color: theme.palette.text.secondary,
+        // marginTop: 12,
+        // color: theme.palette.text.secondary,
+    },
+    badgeRoot: {
+        margin: theme.spacing.unit,
+        padding: 0, // `0 ${theme.spacing.unit * 2}px`,
+    },
+    badge: {
+        top: 0,
+    },
+    link: {
+        textDecoration: 'none',
     },
 });
 
@@ -33,11 +43,11 @@ const _CategoryLink = ({ org, title, count, classes }) => {
     return (
         count > 0 ? (
             <div className={classes.badgeStyle}>
-                <Badge badgeContent={count}>
-                    <Link style={level3} href={'#' + org.login + '-' + title}>
+                <BadgeSmall badgeContent={count} color="secondary" classes={{ root: classes.badgeRoot, badge: classes.badge }}>
+                    <Link style={level3} href={'#' + org.login + '-' + title} className={classes.link}>
                         {title}
                     </Link>
-                </Badge>
+                </BadgeSmall>
             </div>
          ) : null
     );
@@ -57,7 +67,7 @@ const TOC = ({ orgs, classes }) => {
                 <CategoryLink org={org} title="Lessons" count={lessons.length} />
                 <CategoryLink org={org} title="Labs" count={labs.length} />
                 <CategoryLink org={org} title="Demo Apps" count={demoApps.length} />
-                <CategoryLink org={org} title="other" count={other.length} />
+                <CategoryLink org={org} title="Other" count={other.length} />
             </div>
         );
     });

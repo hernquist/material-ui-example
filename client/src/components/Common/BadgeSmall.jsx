@@ -6,10 +6,6 @@ const RADIUS = 8;
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
-    badgeRoot: {
         margin: theme.spacing.unit * 2,
         padding: `0 ${theme.spacing.unit * 2}px`,
     },
@@ -27,7 +23,7 @@ const BadgeSmall = props => {
     return (
         <Badge
             {...props}
-            className={classes.badgeRoot}
+            className={classes.root}
             classes={{ badge: classes.badge }}>{children}
         </Badge>
     );

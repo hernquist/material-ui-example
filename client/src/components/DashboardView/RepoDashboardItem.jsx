@@ -32,6 +32,13 @@ const styles = theme => ({
     },
     secondary: {
     },
+    in: {
+        color: theme.palette.text.secondary,
+    },
+    orgName: {
+        color: theme.palette.primary.dark,
+        fontStyle: 'italic',
+    },
     description: {
         color: theme.palette.primary.dark,
         fontStyle: 'italic',
@@ -82,6 +89,14 @@ const RepoDashboardItem = ({ org, repo, classes }) => {
             </Typography>
         </span>
     );
+
+    const repoNameWithOrgName =
+        <React.Fragment>
+            <span>{repo.name}</span>
+            <span className={classes.in}> in </span>
+            <span className={classes.orgName}>{org.login}</span>
+        </React.Fragment>;
+
     return (
         <ListItem>
             <ListItemAvatar>
@@ -90,7 +105,7 @@ const RepoDashboardItem = ({ org, repo, classes }) => {
                 </Avatar>
             </ListItemAvatar>
             <ListItemText
-                primary={repo.name}
+                primary={repoNameWithOrgName}
                 secondary={secondaryText}
                 classes={{ primary: classes.primary, secondary: classes.secondary }}
             />

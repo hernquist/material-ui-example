@@ -12,10 +12,8 @@ const styles = theme => ({
         color: theme.palette.primary.contrastText,
     },
     logo: {
-        // width: 40,
         height: 40,
-        backgroundColor: theme.palette.common.white,
-        borderRadius: 3,
+        backgroundColor: theme.palette.primary.main,
     },
     title: {
         color: theme.palette.common.white,
@@ -65,12 +63,12 @@ class NavBar extends React.Component {
                 <Toolbar>
                     <IconButton className={classes.menuButton} aria-label="Menu">
                         {/* <MenuIcon /> */}
-                        {/* <img src="/om-logo.png" className={classes.logo} /> */}
                         {/* <img src="/thd-logo.svg" className={classes.logo} /> */}
-                        <img src="/orange-method-sticker.png" alt="Orange Method" className={classes.logo} />
+                        <img src="/om-logo.png" className={classes.logo} />
+                        {/* <img src="/orange-method-sticker.png" alt="Orange Method" className={classes.logo} /> */}
                     </IconButton>
                     <Typography variant="title" className={classes.title}>
-                        OM Curriculum Roadmap
+                        Curriculum Roadmap
                     </Typography>
 
                     {/* {process.env.NODE_ENV === 'development' ?
