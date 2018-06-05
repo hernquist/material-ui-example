@@ -7,6 +7,7 @@ import blue from '@material-ui/core/colors/blue';
 import deepPurple from '@material-ui/core/colors/deepPurple';
 import orange from '@material-ui/core/colors/orange';
 
+import MainContentContainer from './components/Common/MainContentContainer';
 import DashboardView from './components/DashboardView/DashboardView';
 import StatsView from './components/StatsView/StatsView';
 import CardView from './components/CardView/CardView';
@@ -15,6 +16,7 @@ import OrgDetails from './components/CardView/OrgDetails';
 import About from './components/Common/About';
 import WindowResizeTracker from './components/Common/WindowResizeTracker';
 import LoadingAnimation from './components/Common/LoadingAnimation';
+import ThemeColorBrowser from './components/Common/ThemeColorBrowser';
 
 import getApiUrl from './getApiUrl';
 import toastr from './toastr';
@@ -146,25 +148,79 @@ class App extends React.Component {
             (
                 <main>
                     <Switch>
-                        <Route exact path="/" render={() => <DashboardView orgs={orgs} />} />
-                        <Route exact path="/stats" render={() => <StatsView orgs={orgs} />} />
-                        <Route exact path="/cards" render={() => <CardView orgs={orgs} />} />
+                        <Route
+                            exact path="/"
+                            render={routeProps => (
+                                <MainContentContainer title="Dashboard">
+                                    <DashboardView
+                                        orgs={orgs}
+                                        {...routeProps}
+                                    />
+                                </MainContentContainer>
+                            )}
+                        />
+                        <Route
+                            exact path="/stats"
+                            render={routeProps => (
+                                <MainContentContainer title="Statistics">
+                                    <StatsView
+                                        orgs={orgs}
+                                        {...routeProps}
+                                    />
+                                </MainContentContainer>
+                            )}
+                        />
+                        <Route
+                            exact path="/cards"
+                            render={routeProps => (
+                                <MainContentContainer title="Organizations">
+                                    <CardView
+                                        orgs={orgs}
+                                        {...routeProps}
+                                    />
+                                </MainContentContainer>
+                            )}
+                        />
                         {/* TODO: move this route to the CardView component */}
-                        <Route path="/cards/orgs/:id" render={props => {
-                            const id = props.match.params.id;
+                        <Route path="/cards/orgs/:id" render={routeProps => {
+                            const id = routeProps.match.params.id;
                             const org = this.state.orgs.find(o => o.organization.id === id);
-                            return <OrgDetails org={org.organization} { ...props } />;
+                            return (
+                                <OrgDetails
+                                    org={org.organization}
+                                    { ...routeProps }
+                                />
+                            );
                         }}/>
                         
-                        <Route path="/list" render={() => <ListView orgs={orgs} />} />
-                        <Route exact path="/about" render={
-                            props =>
-                                <About
-                                    themeName={this.state.themeName}
-                                    theme={themes[this.state.themeName]}
-                                    updateTheme={this.updateTheme}
+                        <Route
+                            path="/list"
+                            render={routeProps => (
+                                <MainContentContainer title="Organizations">
+                                    <ListView
+                                        orgs={orgs}
+                                        {...routeProps}
                                 />
-                        }/>
+                                </MainContentContainer>
+                            )}
+                        />
+                        <Route
+                            exact path="/about"
+                            render={routeProps => (
+                                <MainContentContainer title="About">
+                                    <About
+                                        { ...routeProps }
+                                    />
+                                    {process.env.NODE_ENV === 'development' ?
+                                        <div style={{ marginTop: 100 }}>
+                                            <ThemeColorBrowser
+                                                themeName={this.state.themeName}
+                                                theme={themes[this.state.themeName]}
+                                                updateTheme={this.updateTheme} />
+                                        </div> : null}
+                                </MainContentContainer>
+                            )}
+                        />
                     </Switch>
                 </main>
             );
@@ -173,8 +229,12 @@ class App extends React.Component {
                 <WindowResizeTracker>
                     <CssBaseline />
                     <section style={{ height: "100%" }}>
-                        <header>
-                            <NavBar themeName={this.state.themeName} updateTheme={this.updateTheme} refresh={() => this.getOrgData(true)} />
+                        <header style={{ zIndex: 10}}>
+                            <NavBar
+                                themeName={this.state.themeName}
+                                updateTheme={this.updateTheme}
+                                refresh={() => this.getOrgData(true)}
+                            />
                         </header>
                         {mainContent}
                     </section>

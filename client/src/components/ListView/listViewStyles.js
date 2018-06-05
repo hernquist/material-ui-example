@@ -1,11 +1,7 @@
 export default {
-    root: {
-        textAlign: 'center',
-        margin: '50px auto',
-    },
     flexContainer: {
         position: 'fixed',
-        top: '200px',
+        top: '160px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',

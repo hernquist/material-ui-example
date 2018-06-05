@@ -25,7 +25,9 @@ const styles = theme => {
 
     const otherStyles = {
         root: {
-            marginTop: 100,
+            margin: '0 auto',
+            textAlign: 'center',
+            maxWidth: 800,
         },
         panel: {
             width: '100%',

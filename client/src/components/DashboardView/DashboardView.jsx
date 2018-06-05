@@ -1,24 +1,20 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Typography, List, Fade } from '@material-ui/core';
+import { Grid, Typography, List } from '@material-ui/core';
 import RepoDashboardItem from './RepoDashboardItem';
 
 const styles = theme => ({
     root: {
-        width: '100%',
-        textAlign: 'center',
-        margin: '50px auto',
-        padding: theme.spacing.unit,
+        // width: '100%',
+        // textAlign: 'center',
+        // margin: '30px auto',
+        // padding: theme.spacing.unit,
     },
     title: {
         // color: theme.palette.primary.dark,
     },
-    heading: {
-        width: '100%',
-        borderRadius: '10px',
-    },
-    content: {
-        margin: 50,
+    
+    content: {        
         // maxWidth: '800px',
     }
 });
@@ -47,38 +43,29 @@ const DashboardView = ({ orgs, classes }) => {
     }).sort(compareObjectsByProperty('updatedAt'));;
     const updatedReposList = updatedRepos.map(repo => <RepoDashboardItem key={repo.id} repo={repo} />);
 
-    return (
-        <Fade in={true} timeout={{ enter: 1000, exit: 1000 }}>
-            <section className={classes.root}>
-                <Typography variant="display2" className={classes.heading}>
-                    Dashboard
+    return (        
+        <Grid container spacing={40} justify="center">
+            <Grid item xs={12} md={4}>
+                <Typography variant="title" className={classes.title}>
+                    Newly Created Repos
                 </Typography>
-                <div className={classes.content}>
-                    <Grid container spacing={40} justify="center">
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="title" className={classes.title}>
-                                Newly Created Repos
-                            </Typography>
-                            <div className={classes.demo}>
-                                <List dense={false}>
-                                    {newReposList}
-                                </List>
-                            </div>
-                        </Grid>
-                        <Grid item xs={12} md={4}>
-                            <Typography variant="title" className={classes.title}>
-                                Recently Updated Repos
-                            </Typography>
-                            <div className={classes.demo}>
-                                <List dense={false}>
-                                    {updatedReposList}
-                                </List>
-                            </div>
-                        </Grid>
-                    </Grid>
+                <div className={classes.demo}>
+                    <List dense={false}>
+                        {newReposList}
+                    </List>
                 </div>
-            </section>
-        </Fade>
+            </Grid>
+            <Grid item xs={12} md={4}>
+                <Typography variant="title" className={classes.title}>
+                    Recently Updated Repos
+                </Typography>
+                <div className={classes.demo}>
+                    <List dense={false}>
+                        {updatedReposList}
+                    </List>
+                </div>
+            </Grid>
+        </Grid>
     );
 };
 
