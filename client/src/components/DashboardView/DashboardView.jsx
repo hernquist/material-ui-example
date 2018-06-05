@@ -19,10 +19,6 @@ const styles = theme => ({
     }
 });
 
-function findOrgById(orgs, id) {
-    return orgs.find(org => org.id == id);
-}
-
 const compareObjectsByProperty = propName => (a, b) => a[propName] > b[propName] ? -1 : 1;
 
 const RECENT_DAYS = 15;

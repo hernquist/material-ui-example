@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 import CurriculumSummary from './CurriculumSummary';
 import TagsAndTopicsSummary from './TagsAndTopicsSummary';
 

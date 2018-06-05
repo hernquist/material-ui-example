@@ -41,4 +41,4 @@ const MainContentContainer = ({ title, children, classes }) => (
     </Fade>
 );
 
-export default withStyles(styles)(MainContentContainer);
+export default withStyles(styles, { withTheme: true })(MainContentContainer);

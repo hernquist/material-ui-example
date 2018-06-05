@@ -1,9 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import ViewportContext from '../Common/ViewportContext';
-import LinkButton from '../Common/LinkButton';
 import Summary from '../Common/Summary';
 import Link from '../Common/Link';
 import OrgRepos from './OrgRepos';
@@ -48,10 +46,6 @@ const OrgDetails = ({ org, classes }) => {
         <ViewportContext.Consumer>
             {viewport => (
                 <section className={classes.root}>
-                    {/* <LinkButton to={"/cards"} variant="fab" aria-label="details" className={classes.button}>
-                        <ArrowBackIcon />
-                    </LinkButton> */}
-
                     <Paper elevation={6}>
                         <Summary
                             id={org.name}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import TOC from './TOC';
 import Org from './Org';
 import styles from './listViewStyles';

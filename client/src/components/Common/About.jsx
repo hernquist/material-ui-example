@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Paper, Typography, Fade } from '@material-ui/core';
+import { List, Paper, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import toastr from '../../toastr';
@@ -57,7 +57,7 @@ class About extends React.Component {
             });
     }
     render() {
-        const { themeName, theme, updateTheme, classes } = this.props;
+        const { classes } = this.props;
         return (
             <section>
                 <Typography variant="caption" className={classes.version}>

@@ -64,7 +64,7 @@ class NavBar extends React.Component {
                     <IconButton className={classes.menuButton} aria-label="Menu">
                         {/* <MenuIcon /> */}
                         {/* <img src="/thd-logo.svg" className={classes.logo} /> */}
-                        <img src="/om-logo.png" className={classes.logo} />
+                        <img src="/om-logo.png" alt="Orange Method" className={classes.logo} />
                         {/* <img src="/orange-method-sticker.png" alt="Orange Method" className={classes.logo} /> */}
                     </IconButton>
                     <Typography variant="title" className={classes.title}>

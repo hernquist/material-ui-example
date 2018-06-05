@@ -56,7 +56,7 @@ const styles = theme => ({
 });
 
 function MediaControlCard(props) {
-    const { name, version, logoSrc, logoClassName, url, theme, classes } = props;
+    const { name, version, logoSrc, logoClassName, url, classes } = props;
     const logo = <img src={logoSrc} className={logoClassName} alt={name} />;
     return (
         <ListItem className={classes.root}>
