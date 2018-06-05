@@ -5,7 +5,6 @@ import Summary from '../Common/Summary';
 
 function arrayToObject(arr) {
     return arr.reduce((obj, item) => {
-        console.log('reducing:', item);
         return { ...obj, [item.name]: item.count };
     }, {});
 }

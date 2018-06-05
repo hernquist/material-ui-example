@@ -28,7 +28,7 @@ function getTimeAgo(date) {
 
 const styles = theme => ({
     root: {
-        width: '98%',
+        width: '95%',
     },
     primary: {
         color: theme.palette.secondary.main,

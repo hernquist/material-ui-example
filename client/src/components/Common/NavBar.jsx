@@ -85,7 +85,7 @@ class NavBar extends React.Component {
                     </Tabs>
 
                     <Tooltip
-                        title="Force Server Refresh (clears cache)"
+                        title="Refresh"
                         placement="bottom"
                         classes={{ tooltip: classes.tooltip }}
                     >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Typography, Fade } from '@material-ui/core';
+import { List, Paper, Typography, Fade } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import toastr from '../../toastr';
@@ -19,9 +19,8 @@ const styles = theme => {
         },
         builtWith: {
             marginTop: 50,
-        },
-        list: {
-            maxWidth: '400px',
+            padding: 20,
+            maxWidth: '500px',
             margin: '0 auto',
         },
         reactLogo: {
@@ -67,33 +66,36 @@ class About extends React.Component {
                 <Typography variant="caption" className={classes.version}>
                     Server Version: {this.state.serverVersion}
                 </Typography>
-                <Typography variant="headline" className={classes.builtWith}>
-                    Built with:
-                </Typography>
-                
-                <List dense={false} className={classes.list}>
-                    <BuiltWithTech
-                        name="React"
-                        version="16.4"
-                        logoSrc={reactLogoSvg}
-                        logoClassName={classes.reactLogo}
-                        url="https://reactjs.org/"
-                    />
-                    <BuiltWithTech
-                        name="Material UI"
-                        version="1.1"
-                        logoSrc={materialUiLogoSvg}
-                        logoClassName={classes.materialUiLogo}
-                        url="https://material-ui.com"
-                    />
-                    <BuiltWithTech
-                        name="graphql-request (client for GraphQL)"
-                        version="1.6"
-                        logoSrc={graphqlLogoSvg}
-                        logoClassName={classes.graphqlLogo}
-                        url="https://github.com/prismagraphql/graphql-request"
-                    />
-                </List>
+
+                <Paper elevation={6} className={classes.builtWith}>
+                    <Typography variant="headline">
+                        Built with:
+                    </Typography>
+                    
+                    <List dense={false}>
+                        <BuiltWithTech
+                            name="React"
+                            version="16.4"
+                            logoSrc={reactLogoSvg}
+                            logoClassName={classes.reactLogo}
+                            url="https://reactjs.org/"
+                        />
+                        <BuiltWithTech
+                            name="Material UI"
+                            version="1.1"
+                            logoSrc={materialUiLogoSvg}
+                            logoClassName={classes.materialUiLogo}
+                            url="https://material-ui.com"
+                        />
+                        <BuiltWithTech
+                            name="graphql-request (client for GraphQL)"
+                            version="1.6"
+                            logoSrc={graphqlLogoSvg}
+                            logoClassName={classes.graphqlLogo}
+                            url="https://github.com/prismagraphql/graphql-request"
+                        />
+                    </List>
+                </Paper>
             </section>
         );
     }
