@@ -68,7 +68,7 @@ class NavBar extends React.Component {
                         {/* <img src="/orange-method-sticker.png" alt="Orange Method" className={classes.logo} /> */}
                     </IconButton>
                     <Typography variant="title" className={classes.title}>
-                        Curriculum Roadmap
+                        Curriculum Dashboard
                     </Typography>
 
                     {/* {process.env.NODE_ENV === 'development' ?

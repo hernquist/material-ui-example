@@ -1,5 +1,5 @@
 {
-  "name": "om-roadmap-server",
+  "name": "om-dashboard-server",
   "version": "1.1.1",
   "private": true,
   "engines": {
@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node ./bin/www",
-    "dev": "PORT=3001 DEBUG=om-roadmap-server:* NODE_ENV=development nodemon --inspect ./bin/www",
+    "dev": "PORT=3001 DEBUG=om-dashboard-server:* NODE_ENV=development nodemon --inspect ./bin/www",
     "debug": "PORT=3001 DEBUG=* NODE_ENV=development nodemon --inspect ./bin/www",
     "lint": "yarn eslint ."
   },

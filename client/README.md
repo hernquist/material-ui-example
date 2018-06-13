@@ -1,3 +1,3 @@
-# Orange Method Curriculum Roadmap
+# Orange Method Curriculum Dashboard
 
-To see the roadmap, click [here](https://pages.github.homedepot.com/OrangeMethod/curriculum-roadmap-2/).
+To see the dashboard, click [here](https://om-curriculum-dashboard.apps-np.homedepot.com).

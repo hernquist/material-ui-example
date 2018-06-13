@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Orange Method Curriculum Roadmap', version: process.env.npm_package_version });
+  res.render('index', { title: 'Orange Method Curriculum Dashboard', version: process.env.npm_package_version });
 });
 
 router.get('/api/version', (req, res, next) => {
