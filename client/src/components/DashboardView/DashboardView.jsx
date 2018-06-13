@@ -5,10 +5,6 @@ import RepoDashboardItem from './RepoDashboardItem';
 
 const styles = theme => ({
     root: {
-        // width: '100%',
-        // textAlign: 'center',
-        // margin: '30px auto',
-        // padding: theme.spacing.unit,
     },
     title: {
         // color: theme.palette.primary.dark,
@@ -19,9 +15,13 @@ const styles = theme => ({
     }
 });
 
-const compareObjectsByProperty = propName => (a, b) => a[propName] > b[propName] ? -1 : 1;
+const compareObjectsByProperty = propName => (a, b) => a[propName] < b[propName] ? 1 : -1;
 
 const RECENT_DAYS = 15;
+
+const getRepoLastUpdatedDate = repo => (
+    repo.defaultBranchRef ? new Date(repo.defaultBranchRef.target.history.edges[0].node.author.date) : new Date(repo.updatedAt)
+);
 
 const DashboardView = ({ orgs, classes }) => {
     const allRepos = orgs ? orgs.reduce((repos, org) => repos.concat(org.organization.repositories.nodes), []) : [];
@@ -34,9 +34,9 @@ const DashboardView = ({ orgs, classes }) => {
     const newReposList = newRepos.map(repo => <RepoDashboardItem key={repo.id} repo={repo} />);
 
     const updatedRepos = allRepos.filter(repo => {
-        const updatedAt = new Date(repo.updatedAt);
+        const updatedAt = getRepoLastUpdatedDate(repo);
         return now - updatedAt < numDaysToInclude;
-    }).sort(compareObjectsByProperty('updatedAt'));;
+    }).sort((a, b) => getRepoLastUpdatedDate(a) < getRepoLastUpdatedDate(b));
     const updatedReposList = updatedRepos.map(repo => <RepoDashboardItem key={repo.id} repo={repo} />);
 
     return (        

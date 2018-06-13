@@ -119,6 +119,7 @@ class App extends React.Component {
                     orgs
                 });
                 if (orgs) {
+                    console.log('react commits:', orgs[10].organization.repositories.nodes[0].defaultBranchRef.target.history.edges);
                     const numRepos = orgs.reduce((sum, org) => sum + org.organization.repositories.nodes.length, 0);
                     const message = `Fetched ${numRepos} repos from ${orgs.length} orgs ` +
                         `using ${orgData.gitHubRequests} GraphQL request.`;

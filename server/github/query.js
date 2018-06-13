@@ -44,6 +44,31 @@ query Organization($login: String!) {
                 createdAt
                 updatedAt
                 homepageUrl
+                defaultBranchRef {
+                    name
+                    target {
+                        ...on Commit {
+                            id
+                            history(first: 5) {
+                                pageInfo {
+                                    hasNextPage
+                                }
+                                edges {
+                                    node {
+                                        messageHeadline
+                                        oid
+                                        message
+                                        author {
+                                            name
+                                            email
+                                            date
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
                 issues(states: OPEN) {
                     totalCount
                 }
