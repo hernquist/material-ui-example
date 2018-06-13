@@ -1,7 +1,7 @@
 {
   "name": "om-curriculum-dashboard",
   "homepage": "https://om-curriculum-dashboard.apps-np.homedepot.com/",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "proxy2": "https://om-curriculum-dashboard-server.apps-np.homedepot.com/",
   "proxy": "http://localhost:3001",
