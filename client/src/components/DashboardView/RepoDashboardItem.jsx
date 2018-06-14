@@ -190,7 +190,6 @@ const _RepoDashboardItem = ({ repo, openCommits, setOpenCommits, classes }) => {
             </ListItem>
             
             <Collapse
-                component="span"
                 in={openCommits}
                 timeout="auto"
                 unmountOnExit
